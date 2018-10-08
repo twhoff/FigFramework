@@ -1,2 +1,2 @@
 # fig
-FIG SASS Framework
+Fig SASS Framework
