@@ -1,0 +1,41 @@
+// Theme namespace (for theming / context)
+$namespace: fig;
+
+// Demo containers
+// container gutters, container width
+$common-gutter-width: 18px;
+$containers: (
+    sml:    $common-gutter-width 964px,
+    std:    $common-gutter-width 1140px,
+);
+
+// Custom property for full-width container gutters
+$full-width-gutters: $common-gutter-width;
+
+// Demo breakpoints
+$breakpoints: (
+    s:      568px,
+    m:      768px,
+    l:      1024px,
+   xl:      1200px,
+);
+
+// Custom snapping models: can be used on top of standard snapping behaviour
+$snap-models: (
+    hf: (
+        sml 964px + ($common-gutter-width * 2),
+        std 1140px + ($common-gutter-width * 2)
+    ),
+    hf-sign: (
+        sml 920px + ($common-gutter-width * 2),
+        std 1080px + ($common-gutter-width * 2)
+    )
+);
+
+$container-selector: cont;  // Shorthand for container
+$grid-selector: g;          // Shorthand for grid
+$col-selector: c;           // Shorthand for col
+$grids: 2, 3, 4;            // Demo grid bases
+
+// Typography settings
+$default-font-stack: "Source Sans Pro", "Trebuchet MS", Helvetica, sans-serif;

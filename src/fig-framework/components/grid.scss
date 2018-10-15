@@ -1,0 +1,68 @@
+.#{$grid-selector} {
+
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    align-content: flex-start;
+
+    @mixin base-col-ruleset {
+        display: inline-block;      // Required to reset display: none from hidden columns
+        flex: 0 0 auto;
+        width: auto;                // Default column width is auto
+        & > * {
+            position: relative;
+        }
+    };
+
+    & > .#{$col-selector},
+    & > [class^="#{$col-selector}-"], 
+    & > [class*=" #{$col-selector}-"] {
+        @include base-col-ruleset();
+    }
+
+    .#{$col-selector} {
+        width: 100%;
+    }
+
+    .#{$col-selector}-hidden {
+        display: none;
+    }
+
+    // Default grid
+    @each $grid in $grids {
+        
+        @for $i from 1 through $grid {
+            @if ($i != $grid) {
+                .#{$col-selector}-#{$i}-#{$grid} { width: (100% / $grid) * $i; };
+            }
+        }
+
+    }
+
+    // Mobile-first breakpoints
+    @each $breakpoint, $size in $breakpoints {
+
+        @include media($breakpoint) {
+
+            & > .#{$col-selector}-#{$breakpoint},
+            & > [class*="-#{$breakpoint} "],
+            & > [class$="-#{$breakpoint}"] {
+                @include base-col-ruleset();
+            }
+            .#{$col-selector}-hidden-#{$breakpoint} {
+                display: none;
+            }
+
+            @each $grid in $grids {
+        
+                @for $i from 1 through $grid {
+                    @if ($i != $grid) {
+                        .#{$col-selector}-#{$i}-#{$grid}-#{$breakpoint} { width: (100% / $grid) * $i; };
+                    }
+                }
+        
+            }
+        }
+    }
+
+}

@@ -1,0 +1,16 @@
+// Grid items --
+.nowrap, .nw {
+    flex-wrap: nowrap;
+}
+
+.wrap, .w {
+    flex-wrap: wrap;
+}
+
+// Text --
+.text-nowrap, .t-nw {
+    white-space: nowrap;
+}
+.text-wrap, .t-w {
+    white-space: normal;
+}

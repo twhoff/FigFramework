@@ -1,0 +1,36 @@
+@mixin media($args...) {
+
+    @if length($args) == 1 {
+        $breakpoint: if(
+            map-has-key($breakpoints, nth($args, 1)),
+            map-get($breakpoints, nth($args, 1)),
+            nth($args, 1)
+        );
+        @if type-of($breakpoint) == number {
+            @media (min-width: $breakpoint) {
+                @content;
+            }
+        } @else {
+            @error 'Invalid breakpoint: #{$breakpoint}.';
+        }
+    } @else if length($args) == 2 {
+        $min-breakpoint: if(
+            map-has-key($breakpoints, nth($args, 1)),
+            map-get($breakpoints, nth($args, 1)),
+            nth($args, 1)
+        );
+        $max-breakpoint: if(
+            map-has-key($breakpoints, nth($args, 2)),
+            map-get($breakpoints, nth($args, 2)),
+            nth($args, 2)
+        );
+        @if type-of($min-breakpoint) == number and type-of($max-breakpoint) == number {
+            @media (min-width: $min-breakpoint) and (max-width: $max-breakpoint - 1px) {
+                @content;
+            }
+        } @else {
+            @error 'Invalid breakpoint: #{$breakpoint}.';
+        }
+    }
+
+}

@@ -1,0 +1,27 @@
+$namespace: "fig";
+
+$containers: (
+    std:    18px 960px
+);
+
+$breakpoints: (
+    xs:     320px,
+    s:      568px,
+    m:      768px,
+    l:      1024px,
+    xl:     1280px
+);
+
+$snap-models: ();
+
+$container-selector: container;
+$grid-selector: grid;
+$col-selector: col;
+$grids: 2, 3, 4, 5, 9, 12;
+
+// Content layering --
+$z-index-content: 1;            // z-index for regular content - only used when necessary (will elevate content 1 level above other content)
+$z-index-dropdown: 9979;        // z-index for dropdown menus / dialog content below the modal layer
+$z-index-sticky: 9989;          // z-index for sticky content which has to slide over content
+$z-index-modal: 9999;           // z-index for the modal layer
+$z-index-modal-dropdown: 10009; // z-index for modal layer dialogs

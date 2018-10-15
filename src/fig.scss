@@ -1,0 +1,12 @@
+// Fig Framework entry point
+// Theme: Demo 
+
+// References
+@import "fig-framework/config";         // Core framework config
+@import "themes/demo/config";     // Theme config overrides
+
+@import "themes/demo/map";        // Theme color map / palette
+
+// Framework mixins
+@import "fig-framework/mixins/media";   // Media query mixins
+@import "fig-framework/mixins/gutters"; // Gutters mixin

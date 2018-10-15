@@ -1,0 +1,57 @@
+& {
+    font-family: $default-font-stack;
+    line-height: 1.15;
+    color: $color__global__text__primary;
+
+    a {
+        color: $color__global__text__link__primary;
+        text-decoration: underline;
+        &:hover {
+            color: $color__global__theme__primary;
+        }
+    }
+
+    h1, h2, h3, h4 {
+        font-family: Montserrat, Verdana, Geneva, sans-serif;
+        letter-spacing: -0.3px;
+        font-weight: 400;
+        color: $color__global__text__link__primary;
+        margin: 0px;
+    }
+    h1 {
+        font-size: 24px;
+        line-height: 32px;
+        @include media(l) {
+            font-size: 32px;
+            line-height: 38px;
+        }
+    }
+    h2 {
+        font-size: 20px;
+        line-height: 28px;
+        @include media(l) {
+            font-size: 24px;
+            line-height: 32px;
+        }
+    }
+    h3 {
+        font-size: 16px;
+        line-height: 24px;
+        @include media(l) {
+            font-size: 20px;
+            line-height: 28px;
+        }
+    }
+    h4 {
+        font-size: 14px;
+        line-height: 20px;
+        @include media(l) {
+            font-size: 16px;
+            line-height: 24px;            
+        }
+    }
+
+    .text-strong, .t-s {
+        font-weight: bold;
+    }
+}

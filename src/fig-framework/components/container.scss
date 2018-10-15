@@ -1,0 +1,113 @@
+@mixin create-snap-rules($snap-sizes, $model: "") {
+    &.snap#{$model}, &.s#{$model} {
+        $max-snap-size: nth(nth($snap-sizes, length($snap-sizes)), 2);
+
+        // Now use the sorted snap sizes to generate the snap breakpoints
+        @each $breakpoint, $size in $snap-sizes {
+            @include media($size) {
+                width: $size;
+                @if $size == $max-snap-size {
+                    @at-root {
+                        body.full .#{$container-selector}.snap#{$model},
+                        body.full .#{$container-selector}.s#{$model},
+                        body.full.#{$container-selector}.snap#{$model},
+                        body.full.#{$container-selector}.s#{$model},
+                        .#{$container-selector}.snap#{$model}.full,
+                        .#{$container-selector}.s#{$model}.full {
+                            width: 100%;
+                            max-width: inherit;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.#{$container-selector} {
+    
+    $container-max-width: nth(map-get($containers, std), 2);
+    $container-gutters: nth(map-get($containers, std), 1);
+    
+    max-width: $container-max-width + ($container-gutters * 2);
+    padding: 0 $container-gutters;
+
+    @at-root {
+        body.full .#{$container-selector},
+        body.full.#{$container-selector},
+        .#{$container-selector}.#{$container-selector}.full {
+            max-width: inherit;
+            padding: 0 if($full-width-gutters, $full-width-gutters, $container-gutters);
+        }
+    }
+
+    @if length($containers) > 1 {
+        @each $container, $data in $containers {
+            $gutters: nth($data, 1);
+            $size: nth($data, 2);
+            @at-root {
+                body.#{$container} .#{$container-selector},
+                body.#{$container}.#{$container-selector},
+                .#{$container-selector}.#{$container-selector}.#{$container},
+                .#{$container-selector}.#{$container-selector}.#{$container}.snap,
+                .#{$container-selector}.#{$container-selector}.#{$container}.s,
+                 {
+                    max-width: $size + ($gutters * 2);
+                    padding: 0 $gutters;
+                }
+            }
+        }
+    }
+
+    &.no-gutters, &.n-g {
+        padding: 0;
+    }
+
+    $snap-sizes: ();
+
+    @each $breakpoint, $size in $breakpoints {
+        $snap-sizes: append($snap-sizes, ($breakpoint $size));
+    }
+    @each $container, $data in $containers {
+        $snap-sizes: append($snap-sizes, ($container nth($data, 2) + (nth($data, 1) * 2)));
+    }
+    
+    @debug $snap-sizes;
+
+    // Simple rabbit-only bubble sort on small data set
+    // NOTE: Swaps aren't in place, as SASS always returns a new list
+    // Also, since there is no break statement in SASS for while loops
+    // we have to loop back maybe 1 extra time unnecessarily.
+    $swapped: true;
+    @while $swapped {
+        $swapped: false;
+        @for $i from 1 through length($snap-sizes) - 1 {
+            $cur: nth($snap-sizes, $i);
+            $next: nth($snap-sizes, $i + 1);
+            @if nth($cur, 2) > nth($next, 2) {
+                $snap-sizes: set-nth($snap-sizes, $i, $next);
+                $snap-sizes: set-nth($snap-sizes, $i + 1, $cur);
+                $swapped: true;
+            }
+        }
+        @for $i from length($snap-sizes) through 2 {
+            $cur: nth($snap-sizes, $i);
+            $prev: nth($snap-sizes, $i - 1);
+            @if nth($cur, 2) < nth($prev, 2) {
+                $snap-sizes: set-nth($snap-sizes, $i, $prev);
+                $snap-sizes: set-nth($snap-sizes, $i - 1, $cur);
+                $swapped: true;
+            }
+        }
+    }
+
+    // Generate default snap sizes
+    @include create-snap-rules($snap-sizes, "");
+
+    // Generate custom snap sizes
+    @if length($snap-models) {
+        @each $model, $sizes in $snap-models {
+            @include create-snap-rules($sizes, "-#{$model}");
+        }
+    }
+}

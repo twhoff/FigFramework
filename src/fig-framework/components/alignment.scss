@@ -1,0 +1,60 @@
+// Site container --
+.#{$container-selector}-left, .c-l {
+    margin: 0 auto 0 0;
+}
+.#{$container-selector}-left, .c-c {
+    margin: 0 auto;
+}
+.#{$container-selector}-left, .c-r {
+    margin: 0 0 0 auto;
+}
+
+// Grid items --
+
+// Horizontal
+.left, .l {
+    justify-content: flex-start;
+}
+.centre, .center, .c {
+    justify-content: center;
+}
+.right, .r {
+    justify-content: flex-end;
+}
+.spread, .s {
+    justify-content: space-evenly;
+}
+.distribute, .d {
+    justify-content: space-between;
+}
+
+// Vertical
+.vertical-top, .v-t {
+    align-items: flex-start;
+    align-content: flex-start;
+}
+.vertical-centre, .vertical-center, .v-c {
+    align-items: center;
+    align-content: center;
+}
+.vertical-bottom, .v-b {
+    align-items: flex-end;
+    align-content: flex-end;
+}
+.vertical-spread, .v-s {
+    align-content: space-evenly;
+}
+.vertical-distribute, .v-d {
+    align-content: space-between;
+}
+
+// Text --
+.text-left, .t-l {
+    text-align: left;
+}
+.text-centre, .text-center, .t-c {
+    text-align: center;
+}
+.text-right, .t-r {
+    text-align: right;
+}

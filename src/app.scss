@@ -1,0 +1,9 @@
+@import "fig";
+
+body.#{$namespace} {
+    margin: 0;
+    background-color: $color__global__theme__bg__primary;
+
+    // Just to add some space at the bottom in place of a footer
+    padding-bottom: 150px;
+}

@@ -1,0 +1,29 @@
+@import "fig";
+
+// Theme custom fonts
+@import "themes/demo/fonts";
+
+// Framework components
+.#{$namespace} {
+
+    *,
+    *:before,
+    *:after {
+        box-sizing: border-box
+    }
+
+    // Vendor
+    @import "fig-framework/vendor/normalize";
+
+    // Core fig components
+    @import "fig-framework/components/container";
+    @import "fig-framework/components/grid";
+    @import "fig-framework/components/alignment";
+    @import "fig-framework/components/wrapping";
+    @import "fig-framework/components/layers";
+    @import "fig-framework/components/presentation";
+    
+    // Demo theme components
+    @import "themes/demo/typography";
+}
+

@@ -1,0 +1,31 @@
+@import "palette";
+
+// Primary theme colours
+$color__global__theme__primary: $green-p;
+$color__global__theme__primary--hover: $green-3;
+$color__global__theme__bg__primary: $grey-p;
+$color__global__theme__shadow__primary: $black;
+
+// Typography
+$color__global__text__primary: $grey-6;
+$color__global__text__secondary: $grey-3;
+$color__global__text__tertiary: $grey-4;
+
+$color__global__text__positive: $green-5;
+$color__global__text__warning: $orange-p;
+$color__global__text__negative: $red-2;
+
+$color__global__text__high__contrast: $white;
+
+$color__global__text__link__primary: $grey-6;
+
+// Cards
+$color__global__card__bg__primary: $white;
+
+// Form elements
+$color__global__form__input__border__primary: $grey-2;
+$color__global__form__input__border__primary--active: $blue-p;
+$color__global__form__input__bg__primary: $white;
+
+// UI Elements
+$color__global__icon__fill: $white;

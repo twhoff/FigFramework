@@ -1,0 +1,24 @@
+// Visual layers
+.layers {
+    position: relative;
+}
+
+.layer-content, .l-c {
+    z-index: $z-index-content;
+}
+
+.layer-sticky, .l-s {
+    z-index: $z-index-sticky;
+}
+
+.layer-dropdown, .l-d {
+    z-index: $z-index-dropdown;
+}
+
+.layer-modal, .l-m {
+    z-index: $z-index-modal;
+}
+
+.layer-modal-dropdown, .l-m-d {
+    z-index: $z-index-modal-dropdown;
+}
